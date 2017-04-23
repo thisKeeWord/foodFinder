@@ -8,7 +8,7 @@ var dataController = require('./dataController');
 
 app.use(express.static(path.join(__dirname, './../client')));
 
-app.get('/data', dataController.getData);
+app.post('/data', dataController.getData);
 // app.get('foursquare', foursquareController.getData);
 app.get('/', function(req, res) {
   res.render('index.html');

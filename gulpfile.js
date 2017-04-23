@@ -21,7 +21,7 @@ function handleErrors() {
 function buildScript(file, watch) {
   var props = {
     entries : ['./client/components/' + file],
-    debug : false,
+    debug : true,
     transform : babelify.configure({
                 presets: ["react", "es2015"]
                 })
@@ -52,7 +52,7 @@ function buildScript(file, watch) {
 
 // run once
 gulp.task('scripts', function() {
-  return buildScript('App.js', false);
+  return buildScript('index.js', false);
 });
 
 //run nodemon
@@ -66,5 +66,5 @@ gulp.task('start', function() {
 
 // run 'scripts' task first, then watch for future changes
 gulp.task('default', ['scripts', 'start'], function() {
-  return buildScript('App.js', true);
+  return buildScript('index.js', true);
 });

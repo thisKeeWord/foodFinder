@@ -1,4 +1,5 @@
-var Yelp = require('yelp');
+// var Yelp = require('yelp');
+var Yelp = require('yelp-api-v3');
 var keys = require('./../config.js');
 
 var dataController = {
@@ -7,10 +8,12 @@ var dataController = {
 
 
 var yelp = new Yelp({
-  consumer_key: keys.consumer_key,
-  consumer_secret: keys.consumer_secret,
-  token: keys.token,
-  token_secret: keys.token_secret
+  // consumer_key: keys.consumer_key,
+  // consumer_secret: keys.consumer_secret,
+  // token: keys.token,
+  // token_secret: keys.token_secret
+  app_id: keys.leo_client_id,
+  app_secret: keys.leo_client_secret
 });
 
 
@@ -18,21 +21,28 @@ function getData(req, res) {
 	var yelpData = [];
     // See http://www.yelp.com/developers/documentation/v2/search_api
 
-  yelp.search({term: "Restaurant",limit: 20, offset: 20, sort:2, location: "Los Angeles, CA", radius_filter: 20000}, function(error, data) {
+  yelp.search({term: "tacos", categories: "italian", location: "Los Angeles, CA", radius_filter: 20000}, function(error, data) {
   	console.log('testing')
     if(error) console.log(error);
-
-    data.businesses.forEach(function(item){
+    console.log(JSON.parse(data).businesses);
+    var parsedData = JSON.parse(data).businesses;
+    parsedData.forEach(function(item){
+    	console.log(item, "eye-D")
       var obj = {};
       obj.name = item.name;
-      obj.rating = item.rating;
-      obj.review_count = item.review_count;
-      obj.lat = item.location.coordinate.latitude;
-      obj.long = item.location.coordinate.longitude;
-      obj.address = item.location.address;
+      obj.url = item.url;
+      obj.is_closed = item.is_closed;
+      obj.address = item.location.address1;
+      obj.phone = item.phone;
       obj.city = item.location.city;
       obj.state = item.location.state_code;
-      obj.postal_code = item.location.postal_code;
+      obj.zip_code = item.location.zip_code;
+      obj.categories = item.categories[0].title;
+      obj.rating = item.rating;
+      obj.review_count = item.review_count;
+      // obj.lat = item.location.coordinate.latitude;
+      // obj.long = item.location.coordinate.longitude;
+
       yelpData.push(obj);
       // console.log(JSON.stringify(obj));
     });
