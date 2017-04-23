@@ -8,7 +8,7 @@ const columns = [{
     accessor: 'name'
   }, {
     header: 'Url',
-    accessor: 'website'
+    accessor: 'url'
   }, {
     header: 'Phone Number',
     accessor: 'phone'
@@ -20,22 +20,19 @@ const columns = [{
     accessor: 'city'
   }, {
     header: 'State',
-    accessor: 'stateLocation'
+    accessor: 'state'
   }, {
     header: 'Zip Code',
     accessor: 'zip_code'
-  }, {
-    header: 'Closed',
-    accessor: 'is_closed'
   }, {
     header: 'Categories',
     accessor: 'categories'
   }, {
     header: 'Reviews',
-    accessor: 'reviews'
+    accessor: 'review_count'
   }, {
     header: 'Ratings',
-    accessor: 'ratings'
+    accessor: 'rating'
   }]
 }];
 

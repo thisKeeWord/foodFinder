@@ -5,8 +5,8 @@ var dataController = require('./dataController');
 // var foursquareController = require('./foursquareController');
 // var yelpController = require('./yelpController');
 
-
 app.use(express.static(path.join(__dirname, './../client')));
+app.use('/node_modules', express.static(path.join(__dirname, './../node_modules/')));
 
 app.post('/data', dataController.getData);
 // app.get('foursquare', foursquareController.getData);

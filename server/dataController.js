@@ -35,7 +35,8 @@ function getData(req, res) {
       obj.address = item.location.address1;
       obj.phone = item.phone;
       obj.city = item.location.city;
-      obj.state = item.location.state_code;
+      obj.state = item.location.state;
+
       obj.zip_code = item.location.zip_code;
       obj.categories = item.categories[0].title;
       obj.rating = item.rating;
