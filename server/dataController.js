@@ -20,24 +20,25 @@ var yelp = new Yelp({
 function getData(req, res) {
 	var yelpData = [];
     // See http://www.yelp.com/developers/documentation/v2/search_api
+    var userQuery = req.body.userSearch
+  console.log(userQuery, "asdfasdfasdfasdfasdf");
 
-  yelp.search({term: "tacos", categories: "italian", location: "Los Angeles, CA", radius_filter: 20000}, function(error, data) {
-  	console.log('testing')
+  yelp.search({term: userQuery, categories: "italian", location: "Los Angeles, CA", radius_filter: 20000}, function(error, data) {
+  	// console.log('testing')
     if(error) console.log(error);
-    console.log(JSON.parse(data).businesses);
+    // console.log(JSON.parse(data).businesses);
     var parsedData = JSON.parse(data).businesses;
     parsedData.forEach(function(item){
-    	console.log(item, "eye-D")
+    	// console.log(item, "eye-D")
       var obj = {};
       obj.name = item.name;
       obj.url = item.url;
       obj.is_closed = item.is_closed;
-      obj.address = item.location.address1;
+      obj.address = item.location.address1 + ", " + item.location.city + ", " + item.location.state + ", " + item.location.zip_code;
       obj.phone = item.phone;
-      obj.city = item.location.city;
-      obj.state = item.location.state;
-
-      obj.zip_code = item.location.zip_code;
+      // obj.city = item.location.city;
+      // obj.state = item.location.state;
+      // obj.zip_code = item.location.zip_code;
       obj.categories = item.categories[0].title;
       obj.rating = item.rating;
       obj.review_count = item.review_count;

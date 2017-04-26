@@ -8,31 +8,37 @@ const columns = [{
     accessor: 'name'
   }, {
     header: 'Url',
-    accessor: 'url'
+    accessor: 'url',
+    minWidth: 250,
+    render: props => <a href={props.value} style={{ textDecoration: 'none' }}>{props.value}</a>
   }, {
     header: 'Phone Number',
     accessor: 'phone'
   }, {
     header: 'Address',
-    accessor: 'address'
+    accessor: 'address',
+    minWidth: 250,
+    render: props => <a href={"http://maps.google.com/?q=" + props.value} style={{ textDecoration: 'none' }}>{props.value}</a>
   }, {
-    header: 'City',
-    accessor: 'city'
-  }, {
-    header: 'State',
-    accessor: 'state'
-  }, {
-    header: 'Zip Code',
-    accessor: 'zip_code'
-  }, {
+  //   header: 'City',
+  //   accessor: 'city'
+  // }, {
+  //   header: 'State',
+  //   accessor: 'state'
+  // }, {
+  //   header: 'Zip Code',
+  //   accessor: 'zip_code'
+  // }, {
     header: 'Categories',
     accessor: 'categories'
   }, {
     header: 'Reviews',
-    accessor: 'review_count'
+    accessor: 'review_count',
+    maxWidth: 70
   }, {
     header: 'Ratings',
-    accessor: 'rating'
+    accessor: 'rating',
+    maxWidth: 70
   }]
 }];
 

@@ -27,7 +27,9 @@ export default class App extends React.Component {
   handleSubmit(e) {
     // console.log('test 2');
     e.preventDefault();
-    let that = this, inputVal = ReactDOM.findDOMNode(this.refs.food).value;
+    let that = this,
+        inputVal = { userSearch: ReactDOM.findDOMNode(this.refs.food).value };
+
     this.post(inputVal).done(response => {
       // console.log(response)
       that.setState({
