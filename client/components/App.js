@@ -28,7 +28,14 @@ export default class App extends React.Component {
     // console.log('test 2');
     e.preventDefault();
     let that = this,
-        inputVal = { userSearch: ReactDOM.findDOMNode(this.refs.food).value };
+        inputVal = { 
+          foodType: ReactDOM.findDOMNode(this.refs.foodType).value,
+          cuisineType: ReactDOM.findDOMNode(this.refs.cuisineType).value,
+          city: ReactDOM.findDOMNode(this.refs.city).value,
+          stateCode: ReactDOM.findDOMNode(this.refs.stateCode).value,
+          radiusSearch: ReactDOM.findDOMNode(this.refs.radiusSearch).value
+        };
+        console.log('testing')
 
     this.post(inputVal).done(response => {
       // console.log(response)
@@ -42,7 +49,12 @@ export default class App extends React.Component {
     return (
       <div id='App'>
         <form id="inputForm" onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" ref="food" required ></input>
+          <input type="text" ref="foodType" required></input>
+          <input type="text" ref="cuisineType" placeholder="Asian" required></input>
+          <input type="text" ref="city" placeholder="ex: Los Angeles (not LA)" required></input>
+          <input type="text" ref="stateCode" placeholder="ex: CA (for California)" required></input>
+          <input type="number" ref="radiusSearch" placeholder="in miles" required></input>
+          <button>Submit</button>
         </form>
         <Results result={this.state.result} />
       </div>

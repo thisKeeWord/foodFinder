@@ -20,10 +20,10 @@ var yelp = new Yelp({
 function getData(req, res) {
 	var yelpData = [];
     // See http://www.yelp.com/developers/documentation/v2/search_api
-    var userQuery = req.body.userSearch
+  var userQuery = req.body;
   console.log(userQuery, "asdfasdfasdfasdfasdf");
 
-  yelp.search({term: userQuery, categories: "italian", location: "Los Angeles, CA", radius_filter: 20000}, function(error, data) {
+  yelp.search({term: userQuery.foodType, categories: userQuery.cuisineType, location: userQuery.city + ", " + userQuery.stateCode, radius_filter: userQuery.radiusSearch * 1000}, function(error, data) {
   	// console.log('testing')
     if(error) console.log(error);
     // console.log(JSON.parse(data).businesses);
